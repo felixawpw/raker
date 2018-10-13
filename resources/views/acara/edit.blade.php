@@ -9,7 +9,7 @@
               <div class="card-icon">
                 <i class="material-icons">add</i>
               </div>
-              <h4 class="card-title">Tambah Acara</h4>
+              <h4 class="card-title">Edit acara {!! $event->nama!!}</h4>
             </div>
             <div class="card-body ">
               <form class="form-horizontal" method="POST" action="{{ route('event.update', $event->id) }}">
