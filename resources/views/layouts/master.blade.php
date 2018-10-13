@@ -203,7 +203,6 @@
       }).then((result) => {
         if (result) {
           delete_ajax(link);
-          location.reload();
         }
       });
   }
@@ -216,13 +215,18 @@
       success:function(data){
         if (data == 1)
         {
-            var table = $('#datatables').DataTable();
-            table.ajax.reload();
-            swal(
-            'Deleted!',
-            'Data berhasil didelete.',
-            'success'
-          );
+          swal({
+            title: 'Deleted!',
+            text: "Data berhasil didelete!",
+            type: 'success',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result) {
+              location.reload();
+            }
+          });
         }
         else
           swal(
