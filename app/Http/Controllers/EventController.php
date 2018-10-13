@@ -46,13 +46,19 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function date_format($date, $format)
+    {
+        $d = date_create($date);
+        return date_format($d, $format);
+    }
+    
     public function store(Request $request)
     {
-        //
         $event = new Event;
         $event->nama = $request->nama;
-        $event->tanggal_mulai = $request->tanggal_mulai;
-        $event->tanggal_selesai = $request->tanggal_akhir;
+        $event->tanggal_mulai = $this->date_format($request->tanggal_mulai, "Y-m-d");
+        $event->tanggal_selesai = $this->date_format($request->tanggal_akhir, "Y-m-d");
         $event->user_id = Auth::user()->id;
         $event->save();
 
@@ -84,7 +90,7 @@ class EventController extends Controller
         //
         $event = Event::find($id);
         
-        if(Auth::user()->username == "bemft" || $event->user_id == Auth::user()->id)
+        if(Auth::user()->username == "rakerbemft" || $event->user_id == Auth::user()->id)
             return view('acara.edit', compact('event'));
         else
             return redirect()->action('EventController@index')->with('status', "0||Not Allowed||Anda tidak dapat mengedit acara ini.");
@@ -122,7 +128,7 @@ class EventController extends Controller
         $event = Event::find($id);
         $status = 1;
 
-        if(Auth::user()->username == "bemft" || $event->user_id == Auth::user()->id)
+        if(Auth::user()->username == "rakerbemft" || $event->user_id == Auth::user()->id)
             $event->delete();
         else
             $status = 0;
