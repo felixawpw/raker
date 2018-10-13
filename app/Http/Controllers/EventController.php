@@ -52,7 +52,7 @@ class EventController extends Controller
         $d = date_create($date);
         return date_format($d, $format);
     }
-    
+
     public function store(Request $request)
     {
         $event = new Event;
@@ -108,8 +108,8 @@ class EventController extends Controller
         //
         $event = Event::find($id);
         $event->nama = $request->nama;
-        $event->tanggal_mulai = $request->tanggal_mulai;
-        $event->tanggal_selesai = $request->tanggal_akhir;
+        $event->tanggal_mulai = $this->date_format($request->tanggal_mulai, "Y-m-d");
+        $event->tanggal_selesai = $this->date_format($request->tanggal_akhir, "Y-m-d");
         $event->save();
 
         $status = "1||Success||Berhasil mengupdate event $event->nama";
