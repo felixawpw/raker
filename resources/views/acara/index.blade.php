@@ -138,7 +138,8 @@
 <script>
 	$(document).ready(function(){
 		$('#datatables').DataTable({
-      "order": []
+      "order": [],
+      "scrollX":true,
     });
 
 	  var table = $('#datatables').DataTable();
