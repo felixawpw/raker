@@ -103,7 +103,7 @@
       events: [
         @foreach($events as $e)
         {
-          @if(Auth::user()->username == "bemft" || $e->user_id == Auth::user()->id)
+          @if(Auth::user()->username == "akira_pp" || $e->user_id == Auth::user()->id)
             url: "{!! route('event.edit', $e->id) !!}",
             tooltipext: " (Click to edit)",
           @endif
