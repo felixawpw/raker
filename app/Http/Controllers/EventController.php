@@ -90,7 +90,7 @@ class EventController extends Controller
         //
         $event = Event::find($id);
         
-        if(Auth::user()->username == "akira_pp" || $event->user_id == Auth::user()->id)
+        if(Auth::user()->username == "akira_pp")// || $event->user_id == Auth::user()->id)
             return view('acara.edit', compact('event'));
         else
             return redirect()->action('EventController@index')->with('status', "0||Not Allowed||Anda tidak dapat mengedit acara ini.");
@@ -128,7 +128,7 @@ class EventController extends Controller
         $event = Event::find($id);
         $status = 1;
 
-        if(Auth::user()->username == "akira_pp" || $event->user_id == Auth::user()->id)
+        if(Auth::user()->username == "akira_pp")// || $event->user_id == Auth::user()->id)
             $event->delete();
         else
             $status = 0;

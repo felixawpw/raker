@@ -71,7 +71,7 @@
                         <td>{!! $e->nama !!}</td>
                         <td>{!! date_format(date_create("$e->tanggal_mulai"), "d M Y") !!}</td>
                         <td>{!! date_format(date_create("$e->tanggal_selesai"), "d M Y") !!}</td>
-                        @if(Auth::user()->username == "akira_pp" || $e->user_id == Auth::user()->id)
+                        @if(Auth::user()->username == "akira_pp")
                         <td><a href='{!! route("event.edit", $e->id) !!}' class='btn btn-link btn-warning btn-just-icon edit'><i class='material-icons'>dvr</i></a>
                         <button type='submit' class='btn btn-link btn-danger btn-just-icon' 
                           onclick='delete_confirmation(event, "{!! route('event.destroy', $e->id) !!}")'><i class='material-icons'>close</i></button></td>
@@ -103,7 +103,7 @@
       events: [
         @foreach($events as $e)
         {
-          @if(Auth::user()->username == "akira_pp" || $e->user_id == Auth::user()->id)
+          @if(Auth::user()->username == "akira_pp")
             url: "{!! route('event.edit', $e->id) !!}",
             tooltipext: " (Click to edit)",
           @endif
