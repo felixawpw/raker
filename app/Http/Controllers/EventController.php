@@ -37,7 +37,10 @@ class EventController extends Controller
     public function create()
     {
         //
-        return view('acara.create');
+        if(Auth::user()->username == "akira_pp")// || $event->user_id == Auth::user()->id)
+            return view('acara.create');
+        else
+            return redirect()->action('EventController@index')->with('status', "0||Not Allowed||Harap hubungi BEM FT untuk menambah acara.");
     }
 
     /**
